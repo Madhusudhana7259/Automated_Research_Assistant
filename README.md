@@ -20,7 +20,7 @@ This project implements an **Autonomous Research Lab Agent** using **LangGraph**
 
 * **Python**
 * **LangGraph**
-* **ChatGroq (Qwen-32B)** or equivalent LLM
+* **ChatGroq (Llama)** or equivalent LLM
 * **arXivLoader**
 * **PyPDFDirectoryLoader**
 * **FAISS + HuggingFace Embeddings**
