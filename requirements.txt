@@ -1,5 +1,6 @@
 fpdf==1.7.2
 fpdf2==2.8.3
+arxiv==2.1.3
 langchain==0.3.17
 transformers==4.46.3
 langchain-community==0.3.16
