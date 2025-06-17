@@ -5,6 +5,8 @@ import streamlit as st
 from fpdf import FPDF
 from io import BytesIO
 
+from langchain_community.embeddings import HuggingFaceHubEmbeddings
+
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
@@ -38,7 +40,12 @@ os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
 
 
 llm=ChatGroq(model="llama-3.3-70b-versatile")
-embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+embedding = HuggingFaceHubEmbeddings(
+    repo_id="sentence-transformers/all-MiniLM-L6-v2",
+    huggingfacehub_api_token=os.environ.get("HF_TOKEN")
+)# for render
+
 
 class State(TypedDict):
     # messages: Annotated[list[AnyMessage], add_messages]
