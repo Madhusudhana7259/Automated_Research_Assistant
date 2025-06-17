@@ -10,3 +10,4 @@ python-dotenv==1.1.0
 Requests==2.32.4
 streamlit==1.41.1
 typing_extensions==4.14.0
+sentence_transformers
