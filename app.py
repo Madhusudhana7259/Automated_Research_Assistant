@@ -30,12 +30,12 @@ import requests
 st.title("Automated Research assistant")
 st.subheader("Generate New Research ideas")
 
-os.environ["TAVILY_API_KEY"]=os.getenv("TAVILY_API_KEY")
+
 os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
 
 
-os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
+
 
 llm=ChatGroq(model="llama-3.3-70b-versatile")
 embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
