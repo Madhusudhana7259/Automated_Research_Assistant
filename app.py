@@ -9,6 +9,7 @@ from langchain_community.embeddings import HuggingFaceHubEmbeddings
 
 
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_groq import ChatGroq
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -42,9 +43,9 @@ os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
 
 llm=ChatGroq(model="llama-3.3-70b-versatile")
 # embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-embedding = HuggingFaceHubEmbeddings(
-    repo_id="sentence-transformers/all-MiniLM-L6-v2",
-    huggingfacehub_api_token=os.environ.get("HF_TOKEN")
+embedding = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/all-MiniLM-L6-v2",
+    huggingfacehub_api_token=os.environ.get("HF_TOKEN"),
 )# for render
 
 
