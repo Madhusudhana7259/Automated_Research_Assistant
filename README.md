@@ -1,6 +1,7 @@
 ## 🧠 Autonomous Research Lab Agent
 
 This project implements an **Autonomous Research Lab Agent** using **LangGraph** and **ChatGroq** to automate end-to-end scientific research tasks. The system generates research ideas, retrieves papers, summarizes literature, critiques ideas, designs experiments, and produces a final PDF report.
+Link - https://automated-research-assistant-jjgw.onrender.com
 
 ---
 
