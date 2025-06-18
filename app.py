@@ -40,13 +40,12 @@ os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
 
 
 
-
 llm=ChatGroq(model="llama-3.3-70b-versatile")
-# embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-embedding = HuggingFaceEndpointEmbeddings(
-    model="sentence-transformers/all-MiniLM-L6-v2",
-    huggingfacehub_api_token=os.environ.get("HF_TOKEN"),
-)# for render
+embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# embedding = HuggingFaceEndpointEmbeddings(
+#     model="sentence-transformers/all-MiniLM-L6-v2",
+#     huggingfacehub_api_token=os.environ.get("HF_TOKEN"),
+# )# for render
 
 
 class State(TypedDict):
@@ -63,10 +62,20 @@ class State(TypedDict):
 def topic_gen(state:State):
     user_prompt = state["messages"][-1].content
 
+    # system_prompt = (
+    #     "You are a research assistant. Based on the user's interest, return a single-line search query using OR operators "
+    #     "between 2–5 keywords/phrases, without explanations. This query will be used for searching arXiv."
+    # )
     system_prompt = (
-        "You are a research assistant. Based on the user's interest, return a single-line search query using OR operators "
-        "between 2–5 keywords/phrases, without explanations. This query will be used for searching arXiv."
-    )
+    "You are a research assistant. Based on the user's interest, return a single valid arXiv search query "
+    "using only one keyword or phrase, prefixed with a field like 'ti:', 'abs:', or 'all:'. "
+    "Do not include OR operators or multiple terms. Just return a single fielded query like 'ti:LLM'. "
+    "No explanations, no formatting—just the raw query string."
+)
+
+
+
+
 
 
 
@@ -89,6 +98,9 @@ def arxiv_search(state:State):
 
     if last_message.type != "ai":
         raise ValueError("Expected last message to be from assistant (the generated query).")
+    
+
+
 
     query = last_message.content.strip()
     print("🔍 Using query for arXiv search:", query)
