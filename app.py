@@ -21,6 +21,7 @@ from typing_extensions import TypedDict,Optional
 from langchain_core.messages import AnyMessage,HumanMessage, SystemMessage, AIMessage ## Human message or AI message
 from typing import Annotated,Literal ## labelling
 from langgraph.graph.message import add_messages
+from huggingface_hub import login
 
 from langgraph.graph import StateGraph, START, END
 
@@ -41,6 +42,8 @@ os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
 
 llm=ChatGroq(model="llama-3.3-70b-versatile")
 # embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+login(token=os.environ.get("HF_TOKEN"))
+
 embedding = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
     model_kwargs={"use_auth_token": os.environ.get("HF_TOKEN")}
